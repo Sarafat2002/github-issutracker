@@ -12,6 +12,32 @@ const allData = () => {
         });
 }
 
+//search r jonno
+
+document.getElementById('new-issu').addEventListener('click', () => {
+    const input = document.getElementById('search-input');
+    const searchValue = input.value.trim().toLowerCase();
+
+    if (!searchValue) {
+        displayData(globalIsuuesData);
+        return;
+    }
+
+    fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${encodeURIComponent(searchValue)}`)
+        .then(res => res.json())
+        .then(data => {
+            const allApi = data.data;
+
+            // Filter manually 
+            const filterApi = allApi.filter(item => 
+                item.title.toLowerCase().includes(searchValue) ||item.description.toLowerCase().includes(searchValue) ||item.status.toLowerCase().includes(searchValue)
+            );
+
+            displayData(filterApi);
+            updateIssueCount(filterApi);
+        });
+});
+
 //loding
 const showLoading = () => {
     document.getElementById("loading").classList.remove("hidden");

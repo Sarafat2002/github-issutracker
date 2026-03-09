@@ -93,29 +93,74 @@
 
     </div>
 
-    <!--card-->
+    
 
     <section id="card-container"
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-[80%] mx-auto bg-[#E4E4E7] p-6">
     </section>
 
 
-    <section class="modal">
+    <section id="card-modal"  class="modal hidden">
         
-        <div id="card-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-            <div class="bg-white p-6 rounded-lg w-[90%] max-w-xl relative">
-            
-                <button id="modal-close"
-                    class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-xl">&times;</button>
+   <div class="fixed inset-0 bg-black/40 flex items-center justify-center ">
 
-              
-                <h2 id="modal-title" class="font-bold text-2xl mb-4"></h2>
-                <p id="modal-description" class="text-gray-700 mb-4"></p>
-                <p id="modal-author" class="text-gray-500 mb-1"></p>
-                <p id="modal-date" class="text-gray-500 mb-1"></p>
-                <p id="modal-labels" class="text-gray-500"></p>
-            </div>
-        </div>
+  <div class="bg-white w-[550px] p-6 rounded-lg">
+
+    
+    <h1 id="modal-title" class="text-xl font-bold mb-3">
+      Fix broken image uploads
+    </h1>
+
+    
+    <div class="flex items-center gap-2 mb-4">
+
+      <span class="bg-green-100 text-green-600 px-3 py-1 text-sm rounded-full">
+        Opened
+      </span>
+
+      <span class="text-gray-500 text-sm">
+        . Opened by <span id="modal-author"></span> •.
+        <span id="modal-date"></span>
+      </span>
+
+    </div>
+
+    
+    <div id="modal-labels" class="flex gap-2 mb-4">
+    </div>
+
+    
+    <p id="modal-description" class="text-gray-600 mb-5">
+    </p>
+
+   
+    <div class="flex justify-between items-center mb-6">
+
+      <div>
+        <span class="text-gray-500 text-sm">Assignee:</span>
+        <span id="modal-assignee" class="font-medium"></span>
+      </div>
+
+      <div>
+        <span class="text-gray-500 text-sm">Priority:</span>
+        <span id="modal-priority"
+          class="bg-red-100 text-red-600 px-2 py-1 rounded text-sm font-semibold">
+        </span>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="flex justify-end">
+      <button id="modal-close"
+        class="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300">
+        Close
+      </button>
+    </div>
+
+  </div>
+
+</div>
     </section>
 
 

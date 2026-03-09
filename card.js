@@ -31,11 +31,11 @@ buttons.forEach(btn => {
         buttons.forEach(b => b.classList.remove("bg-blue-500", "text-white"));
         buttons.forEach(b => b.classList.add("bg-gray-300"));
 
-        // Add active color to clicked button
+        // Add active color 
         btn.classList.add("bg-blue-500", "text-white");
         btn.classList.remove("bg-gray-300");
 
-        // Get status from data attribute
+        // Get status from data a
         const status = btn.getAttribute("data-status");
         filterIssues(status);
     });
@@ -46,7 +46,7 @@ buttons.forEach(btn => {
 //btn 3 tar jonno
 
 const filterIssues = (status) => {
-    showLoading(); 
+    showLoading();
 
 
     setTimeout(() => {
@@ -63,8 +63,8 @@ const filterIssues = (status) => {
         displayData(filteredData);
         updateIssueCount(filteredData);
 
-        hideLoading(); 
-    }, 200); 
+        hideLoading();
+    }, 200);
 }
 
 // card r length ber karar jonno 
@@ -80,9 +80,9 @@ const displayData = (informations) => {
     cardContainer.innerHTML = "";
     for (let info of informations) {
         const cardDiv = document.createElement('div');
-         let borderColor = "";
+        let borderColor = "";
         if (info.status.toLowerCase() === "open") {
-            borderColor = "border-t-4 border-emerald-600"; 
+            borderColor = "border-t-4 border-emerald-600";
         } else if (info.status.toLowerCase() === "closed") {
             borderColor = "border-t-4 border-violet-600";
         }
@@ -114,8 +114,8 @@ const displayData = (informations) => {
                 <hr class="border-[#64748B]">
 
                 <div class=" text-[#64748B] ">
-                    <p class="py-2">${info.author || 'unknown'}</p>
-                    <p class="py-2">${new Date(info.createdAt).toLocaleDateString()}</p>
+                    <p class="py-2">${info.author}</p>
+                    <p class="py-2">${info.createdAt}</p>
                 </div>
 
             </div>
@@ -124,19 +124,61 @@ const displayData = (informations) => {
     `;
         cardContainer.append(cardDiv);
 
-     cardDiv.addEventListener("click", () => {
-    document.getElementById("modal-title").textContent = info.title;
-    document.getElementById("modal-description").textContent = info.description;
-    document.getElementById("modal-author").textContent = `Author: ${info.author || 'unknown'}`;
-    document.getElementById("modal-date").textContent = `Date: ${new Date(info.createdAt).toLocaleDateString()}`;
-    document.getElementById("modal-labels").textContent = info.labels ? `Labels: ${info.labels.join(', ')}` : '';
+cardDiv.addEventListener("click", () => {
 
-    document.getElementById("card-modal").classList.remove("hidden");
+fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${info.id}`)
+.then(res => res.json())
+.then(data => {
+
+const issue = data.data;
+
+document.getElementById("modal-title").textContent = issue.title;
+document.getElementById("modal-author").textContent = issue.author;
+
+document.getElementById("modal-date").textContent = (issue.createdAt);
+
+document.getElementById("modal-description").textContent = issue.description;
+
+document.getElementById("modal-assignee").textContent =issue.assignee;
+
+document.getElementById("modal-priority").textContent = issue.priority.toUpperCase();
+
+
+
+const labelsContainer = document.getElementById("modal-labels");
+labelsContainer.innerHTML = "";
+
+issue.labels.forEach(label => {
+
+const span = document.createElement("span");
+
+span.className =
+" flex items-center gap-1 bg-red-100 text-red-600 px-2 py-1 rounded text-xs";
+
+span.textContent = label.toUpperCase();
+
+labelsContainer.appendChild(span);
+
 });
 
-        
-    }
-    
+document.getElementById("card-modal").classList.remove("hidden");
+
+});
+
+});
+
 }
+};
+
+document.getElementById("modal-close").addEventListener("click", () => {
+document.getElementById("card-modal").classList.add("hidden");
+});
+
+
+document.getElementById("card-modal").addEventListener("click", (e) => {
+    if (e.target.id === "card-modal") {
+        document.getElementById("card-modal").classList.add("hidden");
+    }
+});
 
 allData()

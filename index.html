@@ -13,44 +13,59 @@
         rel="stylesheet">
 </head>
 
-<body class="font-sans bg-slate-50">
+<body class="font-sans bg-slate-50 flex items-center justify-center min-h-screen">
 
-    <section class="Login-section bg-white w-[30%] h-[50%] mx-auto my-20">
+    <section class="bg-white w-[400px] p-8 rounded-lg shadow">
 
-        <div class="items-center flex flex-col text-center">
-            <img class="py-6" src="./assets/github-logo.png" alt="">
-            <h1 class="font-bold text-3xl">GitHub Issues Tracker</h1>
-            <p class="text-gray-500">Sign in to manage your issues</p>
-
+        <div class="flex flex-col items-center text-center">
+            <img class="py-4 w-12" src="./assets/github-logo.png" alt="">
+            <h1 class="font-bold text-2xl">GitHub Issues Tracker</h1>
+            <p class="text-gray-500 text-sm">Sign in to manage your issues</p>
         </div>
 
-        <div class="">
-            <p class="font-bold">Username</p>
-            <input class="w-[90%]" placeholder="Enter Username" type="text">
-            <p>Default: admin</p>
+        <div class="mt-6 space-y-4">
+            <div>
+                <label class="font-bold text-sm">Username</label>
+                <input class="w-full border border-gray-300 rounded px-3 py-2 mt-1" placeholder="Enter Username"
+                    type="text">
+                <p class="text-xs text-indigo-700 ">Default: admin</p>
+            </div>
 
-            <p>Password</p>
-            <input class="w-[90%]" type="text" placeholder="Enter Password" >
-            <p>Default: admin123</p>
-            <button>Sign In</button>
+            <div>
+                <label class="font-bold text-sm">Password</label>
+                <input class="w-full border border-gray-300 rounded px-3 py-2 mt-1" type="password"
+                    placeholder="Enter Password">
+                <p class="text-xs text-indigo-700">Default: admin123</p>
+            </div>
+
+            <button class="w-full bg-[#4A00FF] text-white py-2 rounded font-semibold hover:opacity-90">
+                Sign In
+            </button>
         </div>
+
+     
+        <div class="flex items-center gap-3 pt-4">
+            <hr class="flex-1 border-gray-300">
+            <span class="text-sm text-gray-500">OR</span>
+            <hr class="flex-1 border-gray-300">
+            
+        </div>
+
+        <div class="text-center pt-6">
+            <p class="text-gray-500 mb-2">Demo Credentials:</p>
+        </div>
+
+        
+        <div class="bg-gray-100 rounded-lg p-4 text-center text-sm">
+            
+            <p><span class="font-semibold">Username:</span> admin</p>
+            <p><span class="font-semibold">Password:</span> admin123</p>
+        </div>
+
 
     </section>
 
-
-
     <script src="./index.js"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Geist', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
 
 </body>
 

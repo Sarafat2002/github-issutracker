@@ -114,8 +114,8 @@ const displayData = (informations) => {
                 <hr class="border-[#64748B]">
 
                 <div class=" text-[#64748B] ">
-                    <p class="py-2">#1by john_doe</p>
-                    <p class="py-2">1/15/2024</p>
+                    <p class="py-2">${info.author || 'unknown'}</p>
+                    <p class="py-2">${new Date(info.createdAt).toLocaleDateString()}</p>
                 </div>
 
             </div>
@@ -123,7 +123,20 @@ const displayData = (informations) => {
    
     `;
         cardContainer.append(cardDiv);
+
+     cardDiv.addEventListener("click", () => {
+    document.getElementById("modal-title").textContent = info.title;
+    document.getElementById("modal-description").textContent = info.description;
+    document.getElementById("modal-author").textContent = `Author: ${info.author || 'unknown'}`;
+    document.getElementById("modal-date").textContent = `Date: ${new Date(info.createdAt).toLocaleDateString()}`;
+    document.getElementById("modal-labels").textContent = info.labels ? `Labels: ${info.labels.join(', ')}` : '';
+
+    document.getElementById("card-modal").classList.remove("hidden");
+});
+
+        
     }
+    
 }
 
 allData()

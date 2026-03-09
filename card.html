@@ -100,6 +100,25 @@
     </section>
 
 
+    <section class="modal">
+        
+        <div id="card-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+            <div class="bg-white p-6 rounded-lg w-[90%] max-w-xl relative">
+            
+                <button id="modal-close"
+                    class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-xl">&times;</button>
+
+              
+                <h2 id="modal-title" class="font-bold text-2xl mb-4"></h2>
+                <p id="modal-description" class="text-gray-700 mb-4"></p>
+                <p id="modal-author" class="text-gray-500 mb-1"></p>
+                <p id="modal-date" class="text-gray-500 mb-1"></p>
+                <p id="modal-labels" class="text-gray-500"></p>
+            </div>
+        </div>
+    </section>
+
+
     <script src="./card.js"></script>
 </body>
 
